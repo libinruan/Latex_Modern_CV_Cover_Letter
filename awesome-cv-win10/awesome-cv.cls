@@ -699,10 +699,11 @@
   \lettertextstyle{\@letterclosing} \\\\
   \letternamestyle{\@firstname\ \@lastname} \\
   \includegraphics[scale=0.2]{./Signature.eps} \\
-  \ifthenelse{\isundefined{\@letterenclosure}}
+  \ifthenelse{\isundefined{\@letterenclosure}} \\
+  \letterenclosurestyle{\@letterenclname: \@letterenclosure}
     {\\}
     {%
-      \\\\\\
-      \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
+      %\\\\\\ %LI
+      %\letterenclosurestyle{\@letterenclname: \@letterenclosure} \\ %LI
     }
 }
