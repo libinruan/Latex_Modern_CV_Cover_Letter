@@ -1,0 +1,23 @@
+# Blank lines or lines starting with # are ignored
+
+# ignores all .txt files JUST in the current folder
+# *.txt
+ 
+# ignores all .txt recursive from the current folder
+# **.txt
+ 
+# ignores all .txt in subdirectories recursive from the current 
+# folder (does not include the current folder)
+# **/*.txt
+
+# With version 1.8.2 of git, you can also use the ** wildcard to match any level of subdirectories:
+
+# **/bin/Debug/
+# **/bin/Release/
+
+**.aux
+**.log
+**.out
+**.gz
+**.pdf
+**.synctex.gz
