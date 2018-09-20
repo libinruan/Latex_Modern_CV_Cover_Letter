@@ -4,4 +4,3 @@ This folder contains the CV and cover letter Latex templates I used for job appl
 
 - Move the folder `/fonts`, and style files into the folder `/example` and modified the `awesome-cv.cls` file so that the graph file, the mugshot profile, and the font collection, can be loaded correctly when the compiler is running.
 - Add a signature section into the `coverletter.tex` template.
-
