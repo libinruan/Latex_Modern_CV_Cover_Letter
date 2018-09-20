@@ -19,7 +19,8 @@
 
 \ProvidesClass{yaac-another-awesome-cv}[2017/11/17  v1.7.0 'YAAC: Another Awesome CV' Class]
 
-\LoadClass[a4paper]{article}
+%\LoadClass[a4paper]{article}
+\LoadClass[letterpaper]{article}
 
 \DeclareOption{green}{
   \def\@green{green}
@@ -42,6 +43,11 @@
 
 \DeclareOption{alternative}{
   \def\@alternative{alternate}
+}
+
+%lipin
+\DeclareOption{info_centered}{
+	\def\@info_centered{info_centered}
 }
 
 \ProcessOptions
@@ -137,12 +143,12 @@
 \setlength{\leftcolumn}{2.5cm}
 
 % Font Awesome icons aliases
-\newcommand{\mailSymbol}{\faAt}
-\newcommand{\locationSymbol}{\faMapMarker}
-\newcommand{\infoSymbol}{\faInfo}
-\newcommand{\linkedinSymbol}{\faLinkedin}
+\newcommand{\mailSymbol}{\faEnvelope} %\faAt
+\newcommand{\locationSymbol}{\faHome}
+\newcommand{\infoSymbol}{\faInfoCircle}
+\newcommand{\linkedinSymbol}{\faLinkedinSquare} 
 \newcommand{\viadeoSymbol}{\faViadeo}
-\newcommand{\mobileSymbol}{\faMobilePhone}
+\newcommand{\mobileSymbol}{\faPhone}
 \newcommand{\githubSymbol}{\faGithub}
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
@@ -156,8 +162,8 @@
 
 % Render author's name
 % Usage: \user{<firstanme>}{<lastname>}
-%\newcommand\user[2]{\color{accentcolor}{ \LARGE #1 \textbf{#2} } \color{Black}}
-\newcommand\user[2]{\color{accentcolor}{ \LARGE \textbf{#1 #2} } \color{Black}}
+%\newcommand\user[2]{\color{accentcolor}{ \LARGE #1 \textbf{#2} } \color{Black}} %lipin:0
+\newcommand\user[2]{\color{accentcolor}{ \fontsize{20pt}{1em} \textbf{#1 #2} } \color{Black}} %lipin:1
 
 % Render a text with its symbol
 % Usage; \socialtext{<icon>}{<label>}
@@ -222,7 +228,7 @@
 	 }
 	 \bigskip
   }{
-    \color{accentcolor}\textsc{\large{#1}}\color{black}
+    \color{accentcolor}\textsc{ {#1} } \color{black}
   }
 }
 

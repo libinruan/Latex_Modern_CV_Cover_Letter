@@ -273,8 +273,8 @@
 \newcolumntype{Y}{>{\raggedleft}p{\leftcolumn}}
 
 % Define the 'scholarship' environment
-\newenvironment{scholarship}{%
-  \begin{tabular}{Y p{\rightcolumnlength}}
+\newenvironment{scholarship}{%\rightcolumnlength
+  \begin{tabular}{Y p{}}
 }{%
   \end{tabular}
 }
