@@ -6,8 +6,8 @@ This folder contains the CV and cover letter Latex templates I used for job appl
 - Add a signature section into the `coverletter.tex` template.
 
 <p float="left">
-  <img src="/coverletter.png" width="230" hspace="60" />
-  <img src="/one_column.png" width="230" hspace="60"/> 
-  <img src="/two_columns.png" width="230" hspace="60"/>
+  <img src="/coverletter.png" width="230" hspace="10" />
+  <img src="/one_column.png" width="230" hspace="10"/> 
+  <img src="/two_columns.png" width="230" hspace="10"/>
 </p>
 
