@@ -45,7 +45,7 @@
   \def\@alternative{alternate}
 }
 
-%lipin
+%lipin unfinished.
 \DeclareOption{info_centered}{
 	\def\@info_centered{info_centered}
 }
@@ -62,7 +62,7 @@
 \RequirePackage{fullpage}
 \RequirePackage[margin=1.5cm]{geometry}
 \RequirePackage{fontawesome}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref} % remove the bracket to show the cross-reference rectangle color.
 \RequirePackage{titlesec}
 \RequirePackage{array}
 \RequirePackage{enumitem}
@@ -74,7 +74,7 @@
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
 % Define default accent colors
-\definecolor{basecolor}{HTML}{000066}       %BLUE
+\definecolor{basecolor}{HTML}{000000} %{000066}       %BLUE
 
 \ifundef{\@green} {
   \ifundef{\@red} {
@@ -93,6 +93,12 @@
 \colorlet{linkcolor}{basecolor}
 \colorlet{accentcolor}{linkcolor!90} % the theme color of the CV
 \colorlet{symbolcolor}{linkcolor!85}
+
+\definecolor{awesome}{HTML}{DC3522} % lipin
+
+% lipin separator in social info
+\newcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+\newcommand{\acvHeaderIconSep}{\space}
 
 % Setup hyperref package, and colours for links
 %\definecolor{linkcolour}{rgb}{0,0.2,0.6}
@@ -163,15 +169,19 @@
 % Render author's name
 % Usage: \user{<firstanme>}{<lastname>}
 %\newcommand\user[2]{\color{accentcolor}{ \LARGE #1 \textbf{#2} } \color{Black}} %lipin:0
-\newcommand\user[2]{\color{accentcolor}{ \fontsize{20pt}{1em} \textbf{#1 #2} } \color{Black}} %lipin:1
+%\newcommand\user[2]{\color{accentcolor}{ \fontsize{32pt}{1em} \textbf{#1 #2} } \color{Black}} %lipin:1
+\newcommand\user[2]{\color{accentcolor}{\fontsize{32pt}{1em} \bfseries #1 #2 } \color{Black}} %lipin:2
+% \fontsize{32pt}{1em}\headerfont\bfseries\color{text} #1 
 
 % Render a text with its symbol
 % Usage; \socialtext{<icon>}{<label>}
-\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
+%\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
+\newcommand{\socialtext}[2]{\mbox{\color{accentcolor!80}#1\acvHeaderIconSep#2}} % lipin
 
 % Render a link with its symbol
 % Usage; \sociallink{<icon>}{<label>}
-\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}\link{#2}{#3}\hspace{1em}}}
+%\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}\link{#2}{#3}\hspace{1em}}}
+\newcommand{\sociallink}[3]{\mbox{\color{accentcolor!80}#1\acvHeaderIconSep\link{#2}{\color{accentcolor!80}#3}}} % lipin
 
 % Define author's name
 % Usage: \name{<firstname>}{<lastname>}
@@ -202,7 +212,7 @@
 
 % Render author's linked-in (optional)
 % Usage: \linkedin{<linked-in-nick>}
-\newcommand*{\linkedin}[1]{\sociallink{\linkedinSymbol}{http://www.linkedin.com/in/#1/fr}{linkedin.com/in/#1}}
+\newcommand*{\linkedin}[1]{\sociallink{\linkedinSymbol}{http://www.linkedin.com/in/#1/fr}{#1}}
 
 % Render author's viadeo(optional)
 % Usage: \viadeo{<viadeo-nick>}
@@ -214,11 +224,11 @@
 
 % Render author's email (optional)
 % Usage: \email{<email adress>}
-\newcommand*{\email}[1]{\sociallink{\mailSymbol}{mailto:#1}{#1}}
+\newcommand*{\email}[1]{\sociallink{\mailSymbol}{mailto:#1}{#1}} %lipin
 
 % Render author's mobile phone (optional)
 % Usage: \smartphone{<mobile phone number>}
-\newcommand*\smartphone[1]{\socialtext{\mobileSymbol}{#1}}    
+\newcommand*\smartphone[1]{\socialtext{\faMobile}{#1}} %lipin   
 
 % Render author's tagline
 \newcommand\resumetitle[1]{
@@ -228,12 +238,17 @@
 	 }
 	 \bigskip
   }{
-    \color{accentcolor}\textsc{ {#1} } \color{black}
+    % \color{awesome}\textsc{ {#1} } \color{black} % lipin: tagline color \color{accentcolor}
+    \fontsize{7.6pt}{1em}\scshape\color{awesome} #1 \color{black} % lipin
   }
 }
 
 % Define social entries to print in header
 \newcommand{\socialinfo}[1]{\def\@socialinfo{#1}}
+
+% lipin
+\newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em} \textcolor{symbolcolor} #1}}
+
 
 % Render CV header
 % Needs \@firstname, \@lastname and \@tagline to be defined
@@ -253,17 +268,20 @@
       \end{minipage}
     }{}
     \resumetitle{\@tagline}
-  }{
+  }{ % if you use the option `alternative`, edit this area.
     \ifundef{\@photodiameter}{
-      \begin{minipage}{\linewidth}
+     %\centerline{
+      \begin{minipage}{\linewidth}\centering % lipin added \centering
     }{
       \begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
     }
-    \user{\@firstname}{\@lastname}\\
-    \resumetitle{\@tagline}
-    \smallskip\\
-    \small{\@socialinfo}
-    \end{minipage}
+      \user{\@firstname}{\@lastname} \\
+      \resumetitle{\@tagline}
+      \smallskip\\
+      %\small{\@socialinfo} % lipin
+      \headersocialstyle{\@socialinfo} 
+      \end{minipage}
+     %}
     \ifdef{\@photodiameter}{
       \begin{minipage}{\@photodiameter}
         \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
@@ -274,7 +292,7 @@
 }
 
 % Resume part title definition
-\newcommand\sectionTitle[2]{\section{\texorpdfstring{\color{accentcolor}#2\enspace #1}{#1}}}
+\newcommand\sectionTitle[2]{\section{\texorpdfstring{\color{accentcolor!80}#2\enspace #1}{#1}}}
 
 % Define a new column type for the scholarship environment
 \newcolumntype{Y}{>{\raggedleft}p{\leftcolumn}}
